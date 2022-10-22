@@ -1,0 +1,13 @@
+{	
+   image_no:    [ image_file,
+		  title,
+		  random_article,
+		  summary,
+		  question,
+		  abstractive_answer,
+		  extractive_answer
+		],
+	....
+	....
+	....
+}

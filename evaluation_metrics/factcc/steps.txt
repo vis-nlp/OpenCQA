@@ -1,0 +1,4 @@
+1. make sure data files are correct
+2. cd data; python data_to_jsonl.py
+3. update paths in modeling/scripts/factcc-eval.sh and download necessary model checkpoint files as per README
+4. cd modeling/scripts;sh factcc-eval.sh

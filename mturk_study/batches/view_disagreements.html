@@ -1,0 +1,1193 @@
+
+<head>
+<meta charset="utf-8">
+</head>
+<!-- css file -->
+
+<style>
+
+
+
+.flex-container2 {
+  //box-sizing: border-box;
+
+//  margin: auto;
+  //width: 50%;
+
+  background-color: lightblue;
+}
+
+
+.inline_child {
+  //display: inline-block;
+  //display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+  //vertical-align: top;
+  //margin-left: 10px;
+}
+
+
+
+
+.scrollabletextbox {
+	font-size: 15px;
+}
+
+
+<!-- .reset { -->
+	<!-- position:relative;  -->
+	<!-- bottom:0; -->
+<!-- } -->
+
+
+.summary {
+	margin-top: 10px;
+	border: 0;
+	text-align: left;
+	font-size: 20px;
+}
+
+
+.answer1 {
+	margin-top: 10px;
+	border: 0;
+	text-align: left;
+	font-size: 20px;
+}
+
+.answer2 {
+	margin-top: 10px;
+	border: 0;
+	text-align: left;
+	font-size: 20px;
+}
+
+.question1 {
+	
+	margin-top: 10px;
+	border: 0;
+	text-align: left;
+	font-size: 20px;
+	
+
+}
+
+.question2 {
+	
+	margin-top: 10px;
+	border: 0;
+	text-align: left;
+	font-size: 20px;
+	
+
+}
+
+.text {
+text-align: left;
+}
+
+.chart {
+max-height: 400px;
+}
+
+#checkbox_label {
+	
+	padding-top: 150px;
+
+}
+
+
+
+mark {
+  background-color: yellow;
+  color: red;
+}
+
+.sample_text {
+   word-wrap: break-word;
+   max-width: 1300px;
+}
+
+
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  //border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  //font-size: 30px;
+  text-align: center;
+  
+}
+
+.item_chart {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+}
+
+.item_line {
+  border-top: 2px solid gray;
+  grid-column: 1 / span 3;
+  grid-row: 3;
+}
+
+
+.item_line2 {
+  border-top: 2px solid black;
+  grid-column: 1 / span 3;
+  grid-row: 3;
+}
+
+.item_line_header {
+  border-top: 2px solid gray;
+  border-bottom: 2px solid gray;
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  font-size: 18.72px;
+}
+
+
+.grid_container_ui {
+  display: grid;
+  //grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+ // border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  grid-gap: 10px 10px;  
+  //grid-auto-columns: minmax(200px, auto);
+ } 
+
+.grid_container_headers {
+  display: grid;
+  grid-template-columns: 3fr ;
+  grid-gap: 10px 10px;  
+}
+
+
+.grid_container_questions_n_answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  //grid-template-rows: 30px 30px 30px;
+  grid-gap: 10px 10px 10px;
+}
+
+
+
+
+
+
+
+
+
+
+<!-- .grid_container_questions_and_answers { -->
+  <!-- display: grid; -->
+  <!-- //grid-template-columns: 1fr 1fr 1fr 1fr; -->
+  <!-- grid-template-rows: 1fr 1fr 1fr 1fr; -->
+  <!-- grid-gap: 10px 10px; -->
+<!-- } -->
+
+
+</style>
+
+<style>
+body {
+  text-align: center;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 0.75fr;
+  grid-template-rows: 1fr;
+  gap: 5px 5px;
+  grid-template-areas: "chart caption";
+}
+
+.chart { grid-area: chart; 
+        align-self: center;
+        text-align: center;}
+
+.caption { grid-area: caption; 
+        align-self: start;
+        text-align: center;}
+
+.text {
+    text-align: left;
+}
+
+.flex-container2{
+display:-webkit-flex;
+display:flex;
+-webkit-flex-direction:column;
+flex-direction:column;
+-webkit-justify-content:space-around;
+justify-content:space-around;
+-webkit-align-items:center;
+align-items:center;
+-webkit-align-content:space-around;
+align-content:space-around;
+}
+
+
+
+<!-- .zoom { -->
+  <!-- //padding: 50px; -->
+  <!-- transition: transform .2s; /* Animation */ -->
+  <!-- //width: 200px; -->
+  <!-- //height: 200px; -->
+  <!-- margin: 0 auto; -->
+  <!-- margin-left: -->
+<!-- } -->
+
+<!-- .zoom:hover { -->
+  <!-- transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */ -->
+<!-- } -->
+
+
+
+
+</style>
+
+
+<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
+<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js" integrity="sha512-cd6CHE+XWDQ33ElJqsi0MdNte3S+bQY819f7p3NUHgwQQLXSKjE4cPZTeGNI+vaxZynk1wVU3hoHmow3m089wA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- You must include this JavaScript file -->
+<script>
+ 
+
+var dataframe1= [];
+var dataframe2= [];
+var fileInput='';
+window.addEventListener('load', function() {
+    console.log('All assets loaded');
+	
+
+
+
+const inputElement = document.getElementById("csv");
+
+inputElement.onchange = (e) => {
+
+	
+	
+  fileInput = document.getElementById("csv");
+	
+	
+
+  const files = Array.from(e.target.files) // transform FileList into an Array
+
+  files.forEach((file) => {
+    if (!file) return // if you use a regular 'for' loop, use continue instead
+
+   
+    // create a separate reader for every file to avoid conflicts
+    const reader = new FileReader()
+
+    reader.onload = (e) => {
+	
+	
+	
+	
+	//console.log(e.target.result)
+	//var decoder = new TextDecoder('utf-8');
+	//console.log(decoder.decode("hello"));
+	 dataframe1 = d3.csvParse(e.target.result);
+
+	console.log(dataframe1);
+	
+	
+	dataframe1.forEach((row) => {
+	
+	if (row.AssignmentStatus == "Submitted") {
+	
+	create_sample(row.HITId,row.WorkerId,'img_path1',row['Input.img_path1'],row['Input.question1'],row['Input.summary1'],row['Answer.answer1'],row['Input.title1']);
+	create_sample(row.HITId,row.WorkerId,'img_path2',row['Input.img_path2'],row['Input.question2'],row['Input.summary2'],row['Answer.answer2'],row['Input.title2']);
+	create_sample(row.HITId,row.WorkerId,'img_path3',row['Input.img_path3'],row['Input.question3'],row['Input.summary3'],row['Answer.answer3'],row['Input.title3']);
+	create_sample(row.HITId,row.WorkerId,'img_path4',row['Input.img_path4'],row['Answer.question4'],row['Input.summary4'],row['Answer.answer4'],row['Input.title4']);
+	create_sample(row.HITId,row.WorkerId,'img_path5',row['Input.img_path5'],row['Answer.question5'],row['Input.summary5'],row['Answer.answer5'],row['Input.title5']);
+	create_sample(row.HITId,row.WorkerId,'img_path6',row['Input.img_path6'],row['Answer.question6'],row['Input.summary6'],row['Answer.answer6'],row['Input.title6']);
+
+	
+	
+	}
+	});
+	
+	
+	
+
+	function create_sample(hit_id,worker_id,img_no_,img_path_,question_,summary_,answer_,title_) {
+
+	
+		const uiDiv = document.getElementById("grid_container_ui");
+	
+	
+	//create chart grid
+	const sampleDiv = document.createElement("div");
+	sampleDiv.classList.add('grid_container_questions_n_answers');
+	sampleDiv.setAttribute("id", img_path_+"_div");
+	uiDiv.appendChild(sampleDiv);
+	
+	const ulDiv = document.createElement("div");
+	ulDiv.classList.add('grid-item','ul_div');
+	sampleDiv.appendChild(ulDiv);
+	
+	
+	var ul = document.createElement("UL");
+	ul.setAttribute("id", "hit_attrs");
+	document.body.appendChild(ul);
+	var li = document.createElement("LI");
+	var text = document.createTextNode(hit_id);
+	li.appendChild(text);
+	ul.appendChild(li);
+	
+	var li = document.createElement("LI");
+	var text = document.createTextNode(worker_id);
+	 li.classList.add('worker_id');
+	li.appendChild(text);
+	ul.appendChild(li);
+	
+	var li = document.createElement("LI");
+	var text = document.createTextNode(img_path_);
+	li.classList.add('img_path_');
+	li.appendChild(text);
+	ul.appendChild(li);
+
+	var li = document.createElement("LI");
+	var text = document.createTextNode(img_no_);
+	li.appendChild(text);
+	ul.appendChild(li);
+	
+	
+	ulDiv.appendChild(ul);
+	
+
+
+
+	
+	<!-- const checkboxDiv = document.createElement("div"); -->
+	<!-- checkboxDiv.classList.add('grid-item'); -->
+	<!-- sampleDiv.appendChild(checkboxDiv); -->
+	
+	
+	<!-- var checkbox1 = document.createElement("INPUT"); -->
+	<!-- checkbox1.setAttribute("type", "checkbox"); -->
+	<!-- //radio.setAttribute("checked", "false"); -->
+	<!-- checkbox1.id = "checkbox1" -->
+	<!-- checkbox1.classList.add('checkbox'); -->
+	<!-- checkbox1.value='bonus' -->
+	<!-- var label = document.createElement('label'); -->
+	<!-- label.id = "checkbox_label" -->
+	<!-- label.innerHTML = 'bonus'; -->
+	<!-- label.setAttribute('for',  checkbox1.id ); -->
+	<!-- label.appendChild(checkbox1); -->
+	<!-- checkboxDiv.appendChild(label); -->
+	<!-- linebreak = document.createElement("br"); -->
+	<!-- checkboxDiv.appendChild(linebreak); -->
+	<!-- ulDiv.appendChild(checkboxDiv); -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	const chartDiv = document.createElement("div");
+	chartDiv.classList.add('grid-item');
+	chartDiv.classList.add('item_chart');
+	const chartHeader = document.createElement("h3");
+	chartHeader.innerText = title_ ;
+	chartDiv.appendChild(chartHeader);
+	const chartImg = document.createElement("img");
+	chartImg.classList.add('chart');
+	chartImg.id = img_path_;	
+	imageDownload(img_path_, chartImg.id);
+	chartDiv.appendChild(chartImg);
+	sampleDiv.appendChild(chartDiv);
+	
+
+	const summaryDiv = document.createElement("div");
+	summaryDiv.classList.add('grid-item','summaryDiv');
+	
+	const questionHeader = document.createElement("h3");
+	questionHeader.innerText = 'question1'
+	summaryDiv.appendChild(questionHeader);
+	
+	const questionContentDiv = document.createElement("div");
+	questionContentDiv.classList.add('question1');
+	questionContentDiv.innerText = question_;
+	questionContentDiv.contentEditable="true";
+	//questionContentDiv.id = file.name
+	summaryDiv.appendChild(questionContentDiv);	
+	
+	const summaryHeader = document.createElement("h3");
+	summaryHeader.innerText = 'summary'
+	summaryDiv.appendChild(summaryHeader);
+	
+	const summaryContentDiv = document.createElement("div");
+	summaryContentDiv.classList.add('summary');
+	summaryContentDiv.innerText = summary_;
+	//summaryContentDiv.id = file.name
+	summaryDiv.appendChild(summaryContentDiv);
+	
+	const answerHeader = document.createElement("h3");
+	answerHeader.innerText = 'answer1'
+	summaryDiv.appendChild(answerHeader);
+	
+	const answerContentDiv = document.createElement("div");
+	answerContentDiv.classList.add('answer1');
+	answerContentDiv.innerText = answer_;
+	answerContentDiv.contentEditable="true";
+	//answerContentDiv.id = file.name
+	summaryDiv.appendChild(answerContentDiv);
+	
+	sampleDiv.appendChild(summaryDiv);
+	
+	
+	const dividerDiv = document.createElement("div");
+	dividerDiv.classList.add('grid-item');
+	dividerDiv.classList.add('item_line');
+	sampleDiv.appendChild(dividerDiv);
+
+
+
+
+	}
+
+
+
+
+
+
+
+	
+    // e.target points to the reader
+    <!-- const textContent = e.target.result;//console.log(e.target.result.innerHTML.replace('<br>', '')); -->
+	
+	
+	<!-- const uiDiv = document.getElementById("grid_container_ui"); -->
+	 
+	
+	<!-- //create chart grid -->
+	<!-- const sampleDiv = document.createElement("div"); -->
+	<!-- sampleDiv.classList.add('grid_container_questions_n_answers'); -->
+	<!-- uiDiv.appendChild(sampleDiv); -->
+
+<!-- //Radio button list ---------------------------------------------- -->
+	
+	<!-- const radioDiv = document.createElement("div"); -->
+	<!-- radioDiv.classList.add('grid-item'); -->
+	<!-- sampleDiv.appendChild(radioDiv); -->
+	
+	
+	<!-- var radio1 = document.createElement("INPUT"); -->
+	<!-- radio1.setAttribute("type", "radio"); -->
+	<!-- //radio.setAttribute("checked", "false"); -->
+	<!-- radio1.id = "radio1" -->
+	<!-- radio1.classList.add('radio'); -->
+	<!-- radio1.value='good' -->
+	<!-- var label = document.createElement('label'); -->
+	<!-- label.id = "radio_label" -->
+	<!-- label.innerHTML = 'Good'; -->
+	<!-- label.setAttribute('for',  radio1.id ); -->
+	<!-- label.appendChild(radio1); -->
+	<!-- radioDiv.appendChild(label); -->
+	<!-- linebreak = document.createElement("br"); -->
+	<!-- radioDiv.appendChild(linebreak); -->
+	
+	<!-- var radio2 = document.createElement("INPUT"); -->
+	<!-- radio2.setAttribute("type", "radio"); -->
+	<!-- //radio.setAttribute("checked", "false"); -->
+	<!-- radio2.id = "radio2" -->
+	<!-- radio2.classList.add('radio'); -->
+	<!-- radio2.value='complex' -->
+	<!-- var label = document.createElement('label'); -->
+	<!-- label.id = "radio_label" -->
+	<!-- label.innerHTML = 'Too Complex'; -->
+	<!-- label.setAttribute('for',  radio2.id ); -->
+	<!-- label.appendChild(radio2); -->
+	<!-- radioDiv.appendChild(label); -->
+	<!-- linebreak = document.createElement("br"); -->
+	<!-- radioDiv.appendChild(linebreak); -->
+	
+	<!-- var radio3 = document.createElement("INPUT"); -->
+	<!-- radio3.setAttribute("type", "radio"); -->
+	<!-- //radio.setAttribute("checked", "false"); -->
+	<!-- radio3.id = "radio3" -->
+	<!-- radio3.classList.add('radio'); -->
+	<!-- radio3.value='unquestionable' -->
+	<!-- var label = document.createElement('label'); -->
+	<!-- label.id = "radio_label" -->
+	<!-- label.innerHTML = 'Cannot Create Open Ended Question'; -->
+	<!-- label.setAttribute('for',  radio3.id ); -->
+	<!-- label.appendChild(radio3); -->
+	<!-- radioDiv.appendChild(label); -->
+	<!-- linebreak = document.createElement("br"); -->
+	<!-- radioDiv.appendChild(linebreak); -->
+<!-- //-------------------------------------------------------------------	 -->
+	
+	
+	<!-- const chartDiv = document.createElement("div"); -->
+	<!-- chartDiv.classList.add('grid-item'); -->
+	<!-- chartDiv.classList.add('item_chart'); -->
+	<!-- const chartHeader = document.createElement("h3"); -->
+	<!-- img_path = document.querySelector('input[name="img_dir"]:checked').value; -->
+	<!-- chartHeader.innerText = img_path + file.name.replace(/.txt/, '.png'); -->
+	<!-- chartDiv.appendChild(chartHeader); -->
+	<!-- const chartImg = document.createElement("img"); -->
+	<!-- chartImg.classList.add('chart'); -->
+	<!-- chartImg.id = file.name.replace(/.txt/, '.png');	 -->
+	<!-- imageDownload(img_path+chartImg.id, chartImg.id); -->
+	<!-- chartDiv.appendChild(chartImg); -->
+	<!-- sampleDiv.appendChild(chartDiv); -->
+	
+	
+	<!-- radio1.name = 'option_list_' + chartHeader.innerText; -->
+	<!-- radio2.name = 'option_list_' + chartHeader.innerText; -->
+    <!-- radio3.name = 'option_list_' + chartHeader.innerText; -->
+
+	
+	
+	<!-- const summaryDiv = document.createElement("div"); -->
+	<!-- summaryDiv.classList.add('grid-item'); -->
+	<!-- const summaryHeader = document.createElement("h3"); -->
+	<!-- summaryHeader.innerText = file.name -->
+	<!-- summaryDiv.appendChild(summaryHeader); -->
+	<!-- const summaryContentDiv = document.createElement("div"); -->
+	<!-- summaryContentDiv.classList.add('summary'); -->
+	<!-- summaryContentDiv.innerText = textContent.replace(/<br>/g, " "); -->
+	<!-- summaryContentDiv.id = file.name -->
+	<!-- summaryDiv.appendChild(summaryContentDiv); -->
+	<!-- sampleDiv.appendChild(summaryDiv); -->
+	
+	
+	<!-- const dividerDiv = document.createElement("div"); -->
+	<!-- dividerDiv.classList.add('grid-item'); -->
+	<!-- dividerDiv.classList.add('item_line'); -->
+	<!-- sampleDiv.appendChild(dividerDiv); -->
+	
+	
+	
+	// add the newly created element and its content into the DOM
+    
+
+	
+
+    
+  }
+  reader.onerror = (e) => {
+    const error = e.target.error
+    console.error(`Error occured while reading ${file.name}`, error)
+  }
+  reader.readAsText(fileInput.files[0])
+  })
+
+
+  
+}
+
+
+
+
+
+const inputElement2 = document.getElementById("csv2");
+
+inputElement2.onchange = (e) => {
+
+	
+	
+  fileInput2 = document.getElementById("csv2");
+	
+	
+
+  const files = Array.from(e.target.files) // transform FileList into an Array
+
+  files.forEach((file) => {
+    if (!file) return // if you use a regular 'for' loop, use continue instead
+
+   
+    // create a separate reader for every file to avoid conflicts
+    const reader = new FileReader()
+
+    reader.onload = (e) => {
+
+
+	dataframe2 = d3.csvParse(e.target.result);
+	console.log(dataframe2);
+	
+	var image_array = [];
+	dataframe1.forEach((row) => { 
+	
+	
+	
+	image_array.push(row['Input.img_path4']);
+	image_array.push(row['Input.img_path5']);
+	image_array.push(row['Input.img_path6']);
+
+
+	});
+	
+	<!-- console.log(image_array); -->
+	
+	dataframe2.forEach((row2) => {
+	
+	if (row2.AssignmentStatus == "Submitted" ) {
+		
+			
+		
+	
+		if (image_array.includes(row2['Input.img_path1'])) {
+		
+			var answer1 = document.getElementById(row2['Input.img_path1']+"_div").getElementsByClassName('answer1')[0].innerText;
+			
+			if (row2['Answer.answer1'] != answer1) {
+				
+			secondary_answer(row2['Input.img_path1']+"_div",row2['Answer.answer1']);
+			}
+			
+			var question1 = document.getElementById(row2['Input.img_path1']+"_div").getElementsByClassName('question1')[0].innerText;
+			
+			if (row2['Input.question1'] != question1) {
+			
+			secondary_question(row2['Input.img_path1']+"_div",row2['Input.question1']);
+			}
+		}
+		if (image_array.includes(row2['Input.img_path2'])) {
+		
+			var answer1 = document.getElementById(row2['Input.img_path2']+"_div").getElementsByClassName('answer1')[0].innerText;
+			
+			if (row2['Answer.answer2'] != answer1) {
+			
+			secondary_answer(row2['Input.img_path2']+"_div",row2['Answer.answer2']);
+			}
+			
+			var question1 = document.getElementById(row2['Input.img_path2']+"_div").getElementsByClassName('question1')[0].innerText;
+			
+			if (row2['Input.question2'] != question1) {
+			
+			secondary_question(row2['Input.img_path2']+"_div",row2['Input.question2']);
+			}
+			
+		}
+		if (image_array.includes(row2['Input.img_path3'])) {
+		
+			var answer1 = document.getElementById(row2['Input.img_path3']+"_div").getElementsByClassName('answer1')[0].innerText;
+			
+			if (row2['Answer.answer3'] != answer1) {
+			
+			secondary_answer(row2['Input.img_path3']+"_div",row2['Answer.answer3']);
+			}
+			
+			var question1 = document.getElementById(row2['Input.img_path3']+"_div").getElementsByClassName('question1')[0].innerText;
+			
+			if (row2['Input.question3'] != question1) {
+			
+			secondary_question(row2['Input.img_path3']+"_div",row2['Input.question3']);
+			}
+
+			}
+		
+	
+	
+	
+	}
+	});
+
+
+
+
+function secondary_answer(div_id,answer) {
+	
+	
+<!-- console.log(row['Input.img_path1']+row['HITId']); -->
+			
+			var frame = document.getElementById(div_id);
+			
+			var summaryDiv = frame.getElementsByClassName('summaryDiv')[0];
+			<!-- console.log(summaryDiv); -->
+			
+			const answerHeader = document.createElement("h3");
+			answerHeader.innerText = 'answer2'
+			summaryDiv.appendChild(answerHeader);
+		
+			const answerContentDiv = document.createElement("div");
+			answerContentDiv.classList.add('answer2');
+			answerContentDiv.innerText = answer;
+			answerContentDiv.contentEditable="true";
+			//answerContentDiv.id = file.name
+			summaryDiv.appendChild(answerContentDiv);
+
+			
+			
+			
+			
+			
+			var ulDiv = frame.getElementsByClassName('ul_div')[0];
+			
+			
+			
+			//Radio button list ----------------------------------------------
+			
+			
+			
+			
+			const radioDiv = document.createElement("div");
+			radioDiv.classList.add('grid-item','answer_options');
+			ulDiv.appendChild(radioDiv);
+			
+			
+			var radio1 = document.createElement("INPUT");
+			radio1.setAttribute("type", "radio");
+			//radio.setAttribute("checked", "false");
+			radio1.id = "radio1_answer"
+			radio1.classList.add('radio');
+			radio1.value='answer1'
+			var label = document.createElement('label');
+			label.id = "radio_label"
+			label.innerHTML = 'answer1';
+			label.setAttribute('for',  radio1.id );
+			label.appendChild(radio1);
+			radioDiv.appendChild(label);
+			linebreak = document.createElement("br");
+			radioDiv.appendChild(linebreak);
+			
+			var radio2 = document.createElement("INPUT");
+			radio2.setAttribute("type", "radio");
+			//radio.setAttribute("checked", "false");
+			radio2.id = "radio2_answer"
+			radio2.classList.add('radio');
+			radio2.value='answer2'
+			var label = document.createElement('label');
+			label.id = "radio_label"
+			label.innerHTML = 'answer2';
+			label.setAttribute('for',  radio2.id );
+			label.appendChild(radio2);
+			radioDiv.appendChild(label);
+			linebreak = document.createElement("br");
+			radioDiv.appendChild(linebreak);
+			
+			
+			//-------------------------------------------------------------------	
+			
+			radio1.name = 'answer_list_' + div_id;
+			radio2.name = 'answer_list_' + div_id;
+			
+			
+			
+			
+			
+			
+			
+}
+
+
+
+
+function secondary_question(div_id,question) {
+	
+	
+<!-- console.log(row['Input.img_path1']+row['HITId']); -->
+			
+			var frame = document.getElementById(div_id);
+			
+			var summaryDiv = frame.getElementsByClassName('summaryDiv')[0];
+			questionDiv1 = summaryDiv.getElementsByClassName('question1')[0];
+			<!-- console.log(summaryDiv); -->
+			
+			const questionHeader = document.createElement("h3");
+			questionHeader.innerText = 'question2'
+			summaryDiv.appendChild(questionHeader);
+		
+			const questionContentDiv = document.createElement("div");
+			questionContentDiv.classList.add('question2');
+			questionContentDiv.innerText = question;
+			questionContentDiv.contentEditable="true";
+			//answerContentDiv.id = file.name
+			
+			<!-- summaryDiv.appendChild(questionContentDiv); -->
+			
+			questionDiv1.parentNode.insertBefore(questionHeader, questionDiv1.nextSibling);
+			questionHeader.parentNode.insertBefore(questionContentDiv, questionHeader.nextSibling);
+			
+			
+			
+			
+			var ulDiv = frame.getElementsByClassName('ul_div')[0];
+			
+			
+			
+			//Radio button list ----------------------------------------------
+			
+			
+			
+			
+			const radioDiv = document.createElement("div");
+			radioDiv.classList.add('grid-item','question_options');
+			ulDiv.appendChild(radioDiv);
+			
+			
+			var radio1 = document.createElement("INPUT");
+			radio1.setAttribute("type", "radio");
+			//radio.setAttribute("checked", "false");
+			radio1.id = "radio1_question"
+			radio1.classList.add('radio');
+			radio1.value='question1'
+			var label = document.createElement('label');
+			label.id = "radio_label"
+			label.innerHTML = 'question1';
+			label.setAttribute('for',  radio1.id );
+			label.appendChild(radio1);
+			radioDiv.appendChild(label);
+			linebreak = document.createElement("br");
+			radioDiv.appendChild(linebreak);
+			
+			var radio2 = document.createElement("INPUT");
+			radio2.setAttribute("type", "radio");
+			//radio.setAttribute("checked", "false");
+			radio2.id = "radio2_question"
+			radio2.classList.add('radio');
+			radio2.value='question2'
+			var label = document.createElement('label');
+			label.id = "radio_label"
+			label.innerHTML = 'question2';
+			label.setAttribute('for',  radio2.id );
+			label.appendChild(radio2);
+			radioDiv.appendChild(label);
+			linebreak = document.createElement("br");
+			radioDiv.appendChild(linebreak);
+			
+			
+			//-------------------------------------------------------------------	
+			
+			radio1.name = 'question_list_' + div_id;
+			radio2.name = 'question_list_' + div_id;
+			
+			
+			
+			
+			
+			
+			
+}
+
+
+
+
+
+
+
+
+
+
+}
+  reader.onerror = (e) => {
+    const error = e.target.error
+    console.error(`Error occured while reading ${file.name}`, error)
+  }
+  reader.readAsText(fileInput2.files[0])
+  })
+
+
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.onload = function() {
+
+	document.querySelector('form').onsubmit = function(e) {
+		
+		console.log("form submit triggered");
+		
+		var els = document.getElementsByClassName("grid_container_questions_n_answers");
+		output_array=[['img_path','summary','question','answer']]
+		counter = 0
+		e.preventDefault();
+		
+		
+		try {
+		
+		Array.prototype.forEach.call(els, function(elem) {
+		
+		
+		
+		
+		
+		<!-- console.log(elem); -->
+		
+		if(elem.querySelector(".radio") !== null) {
+
+
+		if(elem.querySelector("#radio1_answer") !== null) {
+		
+		try{selected_answer = document.querySelector('input[name="' + elem.querySelector("#radio1_answer").name + '"]:checked').value}
+		catch(err) {throw err;}
+		
+		if (selected_answer == 'answer1') {
+		answer = elem.querySelector(".answer1").textContent;
+		}
+		else if (selected_answer == 'answer2') {
+		answer = elem.querySelector(".answer2").textContent;
+		}
+		
+		}
+		
+		else {
+		
+				answer = elem.querySelector(".answer1").textContent;
+		
+		}
+		
+		
+		if(elem.querySelector("#radio1_question") !== null) {
+		
+		try{selected_question = document.querySelector('input[name="' + elem.querySelector("#radio1_question").name + '"]:checked').value}
+		catch(err) {throw err;}
+		
+		if (selected_question == 'question1') {
+		question = elem.querySelector(".question1").textContent;
+		}
+		else if (selected_question == 'question2') {
+		question = elem.querySelector(".question2").textContent;
+		}
+		
+		
+		}
+		
+		else {
+		
+				question = elem.querySelector(".question1").textContent;
+		
+		}
+		
+		
+		
+		image_path = elem.querySelector(".img_path_").textContent;
+		summary = elem.querySelector(".summary").textContent;
+		
+		
+		output_array.push([image_path,summary,question,answer]);
+		
+		
+		
+		
+		
+		
+		
+		
+		}
+		
+		
+		
+		
+		});
+		
+		
+		
+		
+		
+		
+		<!-- console.log(dataframe) -->
+		<!-- console.log("worker list"); -->
+		<!-- console.log(worker_list) -->
+	
+		
+		
+		<!-- const dataframe_list=[] -->
+		
+		<!-- dataframe.forEach(function(element) { -->
+			<!-- row_list=[]; -->
+			<!-- col_list=[] -->
+			<!-- for(key in element){ -->
+				<!-- row_list.push(`\"${element[key].replace(/"/g, "'").replace(/#/g, "hashtag_")}\"`); -->
+				<!-- col_list.push(`\"${key}\"`); -->
+			<!-- } -->
+			<!-- dataframe_list.push(row_list);		 -->
+		
+		<!-- }); -->
+		
+
+		<!-- dataframe_list.unshift(col_list); -->
+		<!-- console.log("dataframe_list"); -->
+		<!-- console.log(dataframe_list); -->
+		
+		console.log(output_array);
+		<!-- let csvContent = "data:text/csv;charset=utf-8," -->
+		<!-- + output_array.map(e => e.join(",")).join("\n"); -->
+		
+		let csvContent = "data:text/csv;charset=utf-8," 
+		+ output_array.map(string => string === null ? '' : [string[0],`\"${string[1]}\"`,`\"${string[2]}\"`,`\"${string[3]}\"`].join(",")).join("\n");	
+		
+		
+		
+		var encodedUri = encodeURI(csvContent);
+		var link = document.createElement("a");
+		link.setAttribute("href", encodedUri);
+		link.setAttribute("download", "resolved.csv");
+		document.body.appendChild(link); // Required for FF
+
+		link.click(); // This will download the data file named "my_data.csv".
+		
+		
+		
+	
+		<!-- } -->
+		e.preventDefault();
+	}
+	catch(err) {alert("Please select a radio option for charts with question/answer disagreements"); e.preventDefault();}
+	
+	}
+		
+
+
+
+}
+
+
+
+
+
+//-------------------------FIREBASE STORAGE CONNECTIONS------------------------------------
+
+
+
+// TODO: Replace the following with your app's Firebase project configuration
+// For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
+var firebaseConfig = {
+	apiKey: "AIzaSyA8sWptiuAL6R5Cm9Rw1tweisUPusJBHI4",
+    authDomain: "descriptive-qa.firebaseapp.com",
+    projectId: "descriptive-qa",
+    storageBucket: "descriptive-qa.appspot.com",
+    messagingSenderId: "15549150456",
+    appId: "1:15549150456:web:20e774076039af0475b70d"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+
+
+
+
+// Points to the root reference
+var storageRef = firebase.storage().ref();
+
+
+<!-- imageDownload("samples/sample1.png", "sample1"); -->
+<!-- imageDownload("samples/sample2.png", "sample2"); -->
+<!-- imageDownload("samples/sample3.png", "sample3"); -->
+
+
+<!-- imageDownload("${img_path1}", "chart1"); -->
+<!-- imageDownload("${img_path2}", "chart2"); -->
+<!-- imageDownload("${img_path3}", "chart3"); -->
+<!-- imageDownload("${img_path4}", "chart4"); -->
+<!-- imageDownload("${img_path5}", "chart5"); -->
+<!-- imageDownload("${img_path6}", "chart6"); -->
+
+
+function imageDownload(img_path, chart_id){
+
+//${img_path1}
+// Create a reference to the file we want to download
+var starsRef = storageRef.child(img_path);
+
+// Get the download URL
+starsRef.getDownloadURL()
+.then((url) => {
+document.getElementById(chart_id).src= url;
+  // Insert url into an <img> tag to "download"
+})
+.catch((error) => {
+  // A full list of error codes is available at
+  // https://firebase.google.com/docs/storage/web/handle-errors
+  switch (error.code) {
+    case 'storage/object-not-found':
+      // File doesn't exist
+      break;
+    case 'storage/unauthorized':
+      // User doesn't have permission to access the object
+      break;
+    case 'storage/canceled':
+      // User canceled the upload
+      break;
+
+    // ...
+
+    case 'storage/unknown':
+      // Unknown error occurred, inspect the server response
+      break;
+  }
+});
+
+}
+
+//-------------------------FIREBASE STORAGE CONNECTIONS------------------------------------
+
+
+
+</script>
+<!-- <script src="https://assets.crowd.aws/crowd-html-elements.js"></script> -->
+
+<!-- For the full list of available Crowd HTML Elements and their input / output documentation,
+    please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd - form so that your task submits answers to MTurk -->
+
+
+<form answer-format="flatten-objects">
+
+
+
+
+<input type="file" id="csv">
+<input type="file" id="csv2">
+
+
+<div id="grid_container_ui">  
+
+</div>
+<button form-action="submit" id='submit'>Generate Single Output</button>
+</form>
+

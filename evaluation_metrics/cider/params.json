@@ -1,0 +1,7 @@
+{
+	"pathToData" : "data/pew/bertqa_data/",
+	"refName" : "targetAnswers.json",
+	"candName" : "generatedAnswers.json",
+	"resultFile" : "results.json",
+	"idf" : "corpus"
+}

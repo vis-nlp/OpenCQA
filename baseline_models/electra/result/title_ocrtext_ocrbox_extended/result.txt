@@ -1,0 +1,65 @@
+Reading from /data/jiaqing/electra/data/models/electra_base/results/squad_qa/squad_preds.json
+***********
+F1 and EM
+***********
+F1 Score = 49.00820490815178
+Exact Match = 4.141501294219154
+
+***********
+Multi BLEU
+***********
+BLEU = 22.43, 35.3/23.8/19.0/15.8 (BP=1.000, ratio=1.131, hyp_len=73066, ref_len=64590)
+
+***********
+sacreBLEU
+***********
+{
+ "name": "BLEU",
+ "score": 30.7675,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.0.0",
+ "verbose_score": "41.2/30.8/27.5/25.6 (BP = 1.000 ratio = 1.321 hyp_len = 86729 ref_len = 65665)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.0.0"
+}
+
+***********
+BLEURT
+***********
+-0.051403080303675144
+
+*************
+CIDEr/CIDErD
+*************
+computing CIDEr score...
+Mean CIDEr score: 4.379
+computing CIDEr-D score...
+Mean CIDErD score: 1.496
+
+**********
+CS
+**********
+## This results only valid for test.json ##
+generated CS stdev: 24.88%
+
+generated CS mean: 49.74%
+
+generated CS RSD: 50.03%
+
+**********
+perplexity
+**********
+***** eval metrics *****
+  eval_loss               =     0.9611
+  eval_runtime            = 0:03:24.54
+  eval_samples            =        746
+  eval_samples_per_second =      3.647
+  eval_steps_per_second   =       0.46
+  perplexity              =     2.6144
+
+####################
+Done!
+####################

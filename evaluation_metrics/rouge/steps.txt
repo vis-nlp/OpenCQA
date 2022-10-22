@@ -1,0 +1,2 @@
+2. pip install rouge-score
+3. python -m rouge_score.rouge     --target_filepattern=targetAnswers.txt     --prediction_filepattern=generatedAnswers.txt     --output_filename=scores.csv     --use_stemmer=true

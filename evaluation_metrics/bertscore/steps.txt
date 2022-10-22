@@ -1,0 +1,2 @@
+2. pip install bert-score
+3. !bert-score -r $NEW_GROUND -c $NEW_GENERATED --lang en 

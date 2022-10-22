@@ -1,0 +1,5 @@
+1. make sure file paths are correct in squad_output_formatting.py
+2. python squad_output_formatting.py
+3. update files in text_to_json.py(for creating pred file in required format)
+3. python text_to_json.py
+3. python squad_eval.py pew/data/data.json pew/data/pred.json

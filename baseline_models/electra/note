@@ -1,0 +1,1 @@
+python3 run_finetuning.py --data-dir ../data --model-name electra_base --hparams '{"model_size": "base", "task_names": ["squad"], "save_checkpoints_steps":100, "num_train_epochs":20}'

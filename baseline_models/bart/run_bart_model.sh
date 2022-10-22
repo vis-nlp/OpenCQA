@@ -1,0 +1,27 @@
+python -m torch.distributed.run \
+    --nproc_per_node 1 transformers/examples/pytorch/summarization/run_summarization.py \
+    --model_name_or_path facebook/bart-base \
+    --do_train \
+    --do_eval \
+    --do_predict \
+    --train_file qfcs/inputs/train.csv \
+    --validation_file qfcs/inputs/val.csv \
+    --test_file qfcs/inputs/test.csv \
+    --text_column ${model}_text \
+    --summary_column ${summary}_answer \
+    --output_dir qfcs/outputs/$model \
+    --overwrite_output_dir \
+    --learning_rate=0.00005 \
+    --per_device_train_batch_size=4 \
+    --per_device_eval_batch_size=4 \
+    --predict_with_generate \
+    --num_beams=4 \
+    --max_source_length=800 \
+    --max_target_length=128 \
+    --generation_max_length=128 \
+    --eval_steps=500 \
+    --save_steps=500 \
+    --evaluation_strategy steps \
+    --load_best_model_at_end \
+    --weight_decay=0.01 \
+    --max_steps=5000 \

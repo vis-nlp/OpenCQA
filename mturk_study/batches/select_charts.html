@@ -1,0 +1,626 @@
+
+
+<!-- css file -->
+
+
+<style>
+<!-- * { -->
+  <!-- box-sizing: border-box; -->
+<!-- } -->
+
+.zoom {
+  //padding: 50px;
+  //background-color: green;
+  transition: transform .2s;
+  //width: 200px;
+  //height: 200px;
+  //margin-left: 50px;
+  transform: scale(1);
+  transform-origin: bottom left;
+  
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5);
+  //transform: translate(50px, 0px);
+  //margin-left: 10px;
+  //overflow: hidden;
+  transform-origin: bottom left;
+}
+</style>
+
+
+
+
+
+
+
+
+
+<style>
+
+
+
+.flex-container2 {
+  //box-sizing: border-box;
+
+//  margin: auto;
+  //width: 50%;
+
+  background-color: lightblue;
+}
+
+
+.inline_child {
+  //display: inline-block;
+  //display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+  //vertical-align: top;
+  //margin-left: 10px;
+}
+
+
+
+
+.scrollabletextbox {
+	font-size: 15px;
+}
+
+
+<!-- .reset { -->
+	<!-- position:relative;  -->
+	<!-- bottom:0; -->
+<!-- } -->
+
+
+.summary {
+	border: 0;
+	text-align: left;
+}
+
+.text {
+text-align: left;
+}
+
+.chart {
+max-height: 400px;
+margin-bottom: 50px;
+}
+
+#checkbox_label {
+	
+	padding-top: 150px;
+
+}
+
+
+
+mark {
+  background-color: yellow;
+  color: red;
+}
+
+.sample_text {
+   word-wrap: break-word;
+   max-width: 1300px;
+}
+
+
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  //border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  //font-size: 30px;
+  text-align: center;
+  
+}
+
+.item_chart {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+}
+
+.item_line {
+  border-top: 2px solid gray;
+  grid-column: 1 / span 3;
+  grid-row: 3;
+}
+
+
+.item_line2 {
+  border-top: 2px solid black;
+  grid-column: 1 / span 3;
+  grid-row: 3;
+}
+
+.item_line_header {
+  border-top: 2px solid gray;
+  border-bottom: 2px solid gray;
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  font-size: 18.72px;
+}
+
+
+.grid_container_ui {
+  display: grid;
+  //grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+ // border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  grid-gap: 10px 10px;  
+  //grid-auto-columns: minmax(200px, auto);
+ } 
+
+.grid_container_headers {
+  display: grid;
+  grid-template-columns: 3fr ;
+  grid-gap: 10px 10px;  
+}
+
+
+.grid_container_questions_n_answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  //grid-template-rows: 30px 30px 30px;
+  grid-gap: 10px 10px 10px;
+}
+
+
+
+
+
+
+
+
+
+
+<!-- .grid_container_questions_and_answers { -->
+  <!-- display: grid; -->
+  <!-- //grid-template-columns: 1fr 1fr 1fr 1fr; -->
+  <!-- grid-template-rows: 1fr 1fr 1fr 1fr; -->
+  <!-- grid-gap: 10px 10px; -->
+<!-- } -->
+
+
+</style>
+
+<style>
+body {
+  text-align: center;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 0.75fr;
+  grid-template-rows: 1fr;
+  gap: 5px 5px;
+  grid-template-areas: "chart caption";
+}
+
+.chart { grid-area: chart; 
+        align-self: center;
+        text-align: center;}
+
+.caption { grid-area: caption; 
+        align-self: start;
+        text-align: center;}
+
+.text {
+    text-align: left;
+}
+
+.flex-container2{
+display:-webkit-flex;
+display:flex;
+-webkit-flex-direction:column;
+flex-direction:column;
+-webkit-justify-content:space-around;
+justify-content:space-around;
+-webkit-align-items:center;
+align-items:center;
+-webkit-align-content:space-around;
+align-content:space-around;
+}
+
+
+
+<!-- .zoom { -->
+  <!-- //padding: 50px; -->
+  <!-- transition: transform .2s; /* Animation */ -->
+  <!-- //width: 200px; -->
+  <!-- //height: 200px; -->
+  <!-- margin: 0 auto; -->
+  <!-- margin-left: -->
+<!-- } -->
+
+<!-- .zoom:hover { -->
+  <!-- transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */ -->
+<!-- } -->
+
+
+
+
+</style>
+
+
+<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
+<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+
+
+<!-- You must include this JavaScript file -->
+<script>
+ 
+
+
+
+window.addEventListener('load', function() {
+    console.log('All assets loaded');
+	
+
+
+
+const inputElement = document.getElementById("loaded_summaries");
+
+inputElement.onchange = (e) => {
+  const files = Array.from(e.target.files) // transform FileList into an Array
+
+  files.forEach((file) => {
+    if (!file) return // if you use a regular 'for' loop, use continue instead
+
+   
+    // create a separate reader for every file to avoid conflicts
+    const reader = new FileReader()
+
+    reader.onload = (e) => {
+    // e.target points to the reader
+    const textContent = e.target.result;//console.log(e.target.result.innerHTML.replace('<br>', ''));
+	
+	
+	const uiDiv = document.getElementById("grid_container_ui");
+	 
+	
+	//create chart grid
+	const sampleDiv = document.createElement("div");
+	sampleDiv.classList.add('grid_container_questions_n_answers');
+	uiDiv.appendChild(sampleDiv);
+
+//Radio button list ----------------------------------------------
+	
+	const radioDiv = document.createElement("div");
+	radioDiv.classList.add('grid-item');
+	sampleDiv.appendChild(radioDiv);
+	
+	
+	var radio1 = document.createElement("INPUT");
+	radio1.setAttribute("type", "radio");
+	//radio.setAttribute("checked", "false");
+	radio1.id = "radio1"
+	radio1.classList.add('radio');
+	radio1.value='good'
+	var label = document.createElement('label');
+	label.id = "radio_label"
+	label.innerHTML = 'Good';
+	label.setAttribute('for',  radio1.id );
+	label.appendChild(radio1);
+	radioDiv.appendChild(label);
+	linebreak = document.createElement("br");
+	radioDiv.appendChild(linebreak);
+	
+	var radio2 = document.createElement("INPUT");
+	radio2.setAttribute("type", "radio");
+	//radio.setAttribute("checked", "false");
+	radio2.id = "radio2"
+	radio2.classList.add('radio');
+	radio2.value='complex'
+	var label = document.createElement('label');
+	label.id = "radio_label"
+	label.innerHTML = 'Too Complex';
+	label.setAttribute('for',  radio2.id );
+	label.appendChild(radio2);
+	radioDiv.appendChild(label);
+	linebreak = document.createElement("br");
+	radioDiv.appendChild(linebreak);
+	
+	var radio3 = document.createElement("INPUT");
+	radio3.setAttribute("type", "radio");
+	//radio.setAttribute("checked", "false");
+	radio3.id = "radio3"
+	radio3.classList.add('radio');
+	radio3.value='unquestionable'
+	var label = document.createElement('label');
+	label.id = "radio_label"
+	label.innerHTML = 'Cannot Create Open Ended Question';
+	label.setAttribute('for',  radio3.id );
+	label.appendChild(radio3);
+	radioDiv.appendChild(label);
+	linebreak = document.createElement("br");
+	radioDiv.appendChild(linebreak);
+//-------------------------------------------------------------------	
+	
+	
+	const chartDiv = document.createElement("div");
+	chartDiv.classList.add('grid-item');
+	chartDiv.classList.add('item_chart');
+	const chartHeader = document.createElement("h3");
+	img_path = document.querySelector('input[name="img_dir"]:checked').value;console.log(img_path);
+	chartHeader.innerText = img_path + file.name.replace(/.txt/, '.png');
+	chartDiv.appendChild(chartHeader);
+	const chartImg = document.createElement("img");
+	chartImg.classList.add('chart');
+	chartImg.classList.add('zoom');
+	chartImg.id = chartHeader.innerText;	
+	imageDownload(chartImg.id, chartImg.id);
+	chartDiv.appendChild(chartImg);
+	sampleDiv.appendChild(chartDiv);
+	
+	
+	radio1.name = 'option_list_' + chartHeader.innerText;
+	radio2.name = 'option_list_' + chartHeader.innerText;
+    radio3.name = 'option_list_' + chartHeader.innerText;
+
+	
+	
+	const summaryDiv = document.createElement("div");
+	summaryDiv.classList.add('grid-item');
+	const summaryHeader = document.createElement("h3");
+	summaryHeader.innerText = file.name
+	summaryDiv.appendChild(summaryHeader);
+	const summaryContentDiv = document.createElement("div");
+	summaryContentDiv.classList.add('summary');
+	summaryContentDiv.innerText = textContent.replace(/<br>/g, " ");
+	summaryContentDiv.id = file.name
+	summaryDiv.appendChild(summaryContentDiv);
+	sampleDiv.appendChild(summaryDiv);
+	
+	
+	const dividerDiv = document.createElement("div");
+	dividerDiv.classList.add('grid-item');
+	dividerDiv.classList.add('item_line');
+	sampleDiv.appendChild(dividerDiv);
+	
+	
+	
+	// add the newly created element and its content into the DOM
+    
+    <!-- document.body.insertAfter(chartDiv, uiDiv); -->
+	
+
+    
+  }
+  reader.onerror = (e) => {
+    const error = e.target.error
+    console.error(`Error occured while reading ${file.name}`, error)
+  }
+  reader.readAsText(file)
+  })
+  
+}
+
+
+
+
+
+
+
+
+});
+
+
+function saveSelection() {
+
+
+
+const csv_file = [];
+csv_file.push(['img_path','summary','category']);
+
+
+document.querySelectorAll('.grid_container_questions_n_answers').forEach(function(element) {
+
+	
+	img_path = element.getElementsByTagName('h3')[0].innerText;
+	<!-- imgArray.push(img_path); -->
+	summary_text = element.getElementsByClassName('summary')[0].innerHTML.replace(/<br>/g, ' ').replace(/#/g, "hashtag_").replace(/"/g, "'");
+    <!-- summaryArray.push(summary_text); -->
+	try {
+	radio_name = "option_list_" + img_path;
+	csv_file.push([img_path,summary_text,document.querySelector('input[name="' + radio_name + '"]:checked').value]); 
+	}
+	
+	catch(err) {	throw err;  }
+	
+});
+
+
+
+
+
+
+
+console.log(csv_file);
+
+
+
+
+let csvContent = "data:text/csv;charset=utf-8," 
+    + csv_file.map(string => string === null ? '' : [string[0],`\"${string[1]}\"`,string[2]].join(",")).join("\n");
+	<!-- + csv_file.map(e => e.join(",")).join("\n"); -->
+	<!-- + csv_file.map(function(e) { -->
+	
+	<!-- //console.log(e.replace(/,/g, "\,")); -->
+	<!-- e.join(","); -->
+	
+	<!-- } ).join("\n"); -->
+	
+	
+	
+var encodedUri = encodeURI(csvContent);
+var link = document.createElement("a");
+link.setAttribute("href", encodedUri);
+link.setAttribute("download", "new_unprocessed_batch.csv");
+document.body.appendChild(link); // Required for FF
+
+link.click(); // This will download the data file named "my_data.csv".
+}
+
+
+
+window.onload = function() {
+	document.querySelector('form').onsubmit = function(e) {
+		<!-- if (!validateForm()) { -->
+			<!-- alert("Please answer all the questions in order to submit."); -->
+			<!-- e.preventDefault(); -->
+		<!-- } -->
+		<!-- else { -->
+		console.log("form submit triggered");
+		
+		try{saveSelection();}
+		catch(err) {alert("Please select a radio option for each chart"); e.preventDefault();}
+	
+	
+		e.preventDefault();
+	
+	
+	
+		<!-- } -->
+	}
+}
+
+
+
+
+
+//-------------------------FIREBASE STORAGE CONNECTIONS------------------------------------
+
+
+
+// TODO: Replace the following with your app's Firebase project configuration
+// For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
+var firebaseConfig = {
+	apiKey: "AIzaSyA8sWptiuAL6R5Cm9Rw1tweisUPusJBHI4",
+    authDomain: "descriptive-qa.firebaseapp.com",
+    projectId: "descriptive-qa",
+    storageBucket: "descriptive-qa.appspot.com",
+    messagingSenderId: "15549150456",
+    appId: "1:15549150456:web:20e774076039af0475b70d"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+
+
+
+
+// Points to the root reference
+var storageRef = firebase.storage().ref();
+
+
+<!-- imageDownload("samples/sample1.png", "sample1"); -->
+<!-- imageDownload("samples/sample2.png", "sample2"); -->
+<!-- imageDownload("samples/sample3.png", "sample3"); -->
+
+
+<!-- imageDownload("${img_path1}", "chart1"); -->
+<!-- imageDownload("${img_path2}", "chart2"); -->
+<!-- imageDownload("${img_path3}", "chart3"); -->
+<!-- imageDownload("${img_path4}", "chart4"); -->
+<!-- imageDownload("${img_path5}", "chart5"); -->
+<!-- imageDownload("${img_path6}", "chart6"); -->
+
+
+function imageDownload(img_path, chart_id){
+
+//${img_path1}
+// Create a reference to the file we want to download
+var starsRef = storageRef.child(img_path);
+
+// Get the download URL
+starsRef.getDownloadURL()
+.then((url) => {
+document.getElementById(chart_id).src= url;
+  // Insert url into an <img> tag to "download"
+})
+.catch((error) => {
+  // A full list of error codes is available at
+  // https://firebase.google.com/docs/storage/web/handle-errors
+  switch (error.code) {
+    case 'storage/object-not-found':
+      // File doesn't exist
+      break;
+    case 'storage/unauthorized':
+      // User doesn't have permission to access the object
+      break;
+    case 'storage/canceled':
+      // User canceled the upload
+      break;
+
+    // ...
+
+    case 'storage/unknown':
+      // Unknown error occurred, inspect the server response
+      break;
+  }
+});
+
+}
+
+//-------------------------FIREBASE STORAGE CONNECTIONS------------------------------------
+
+
+
+</script>
+<!-- <script src="https://assets.crowd.aws/crowd-html-elements.js"></script> -->
+
+<!-- For the full list of available Crowd HTML Elements and their input / output documentation,
+    please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd - form so that your task submits answers to MTurk -->
+
+
+
+<form answer-format="flatten-objects">
+
+
+
+
+<input type="file" id="loaded_summaries" multiple>
+
+
+<h3> Image directory in Firebase</h3>
+
+<input type="radio" id="mturk_charts/two_col/" name="img_dir" value="mturk_charts/two_col/">
+<label for="mturk_charts/two_col/">mturk_charts/two_col/</label><br>
+<input type="radio" id="mturk_charts/multi_col/" name="img_dir" value="mturk_charts/multi_col/">
+<label for="mturk_charts/multi_col/">mturk_charts/multi_col/</label><br>
+<input type="radio" id="mturk_charts/no_data/two_col/" name="img_dir" value="mturk_charts/no_data/two_col/">
+<label for="other">mturk_charts/no_data/two_col/</label><br>
+<input type="radio" id="mturk_charts/no_data/multi_col/" name="img_dir" value="mturk_charts/no_data/multi_col/">
+<label for="other">mturk_charts/no_data/multi_col/</label><br>
+<input type="radio" id="mturk_charts/no_data_remaining/two_col/" name="img_dir" value="mturk_charts/no_data_remaining/two_col/">
+<label for="other">mturk_charts/no_data_remaining/two_col/</label><br>
+<input type="radio" id="mturk_charts/no_data_remaining/multi_col/" name="img_dir" value="mturk_charts/no_data_remaining/multi_col/">
+<label for="other">mturk_charts/no_data_remaining/multi_col/</label>
+
+
+<div id="grid_container_ui">  
+
+
+
+
+
+</div>
+<button form-action="submit" id='submit'>Generate CSV</button>
+
+</form>
+

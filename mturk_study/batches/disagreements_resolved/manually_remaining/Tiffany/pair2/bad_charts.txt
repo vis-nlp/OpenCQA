@@ -1,0 +1,1 @@
+['mturk_charts/no_data_remaining/multi_col/1680.png', 'mturk_charts/no_data_remaining/multi_col/1683.png', 'mturk_charts/no_data_remaining/multi_col/1875.png']

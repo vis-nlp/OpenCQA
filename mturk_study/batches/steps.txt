@@ -1,0 +1,26 @@
+1. python mturk_output_transfer.py
+2. select charts for new batch using select_charts.html interface, by selecting the caption files needed. image is loaded automatically from firebase.(make sure images are already loaded on firebase with same numbering as local caption files)
+3. mturk_input_populator.py
+4. copy new_unprocessed_batch.csv to unprocessed_batches folder and rename as unprocessed_batch_1,unprocessed_batch_2 etc.
+
+
+viewing submissions:
+
+
+1. load output csv to view_submissions.html (make sure no hits are approved or rejected before this since only submission status samples are shown)
+2. give bonus to who deserves and click calculate bonus and view in console.
+3. click generate new csv and save in edited_answers folder
+4. once 150 is hit, first edit questions and upload to edited_questions, then upload to mturk and modify the answers on your free time and upload to edited_answers.
+5. save samples that were wrongly included in the study in the worngly_included_study_samples.txt if it is too complex or cannot make open ended question. 
+
+NOTE: AS PART OF THIS VIEWING PROCEDURE, DONT REUPLOAD REJECTED SAMPLES ON TURK. JUST EDIT THE SUBMISSION TO MAKE IT SUITABLE AND SAVE IT, OTHERWISE OUTPUT TRANSFER 
+WILL NOT WORK.
+
+
+disagreement resolution:
+
+1. first run disagreement_resolution.py script to automatically resolve few of the disagreements
+2. charts that cannot be resolved automatically can be manually resolved using the view_disagreements.html interface
+3. disagreement_resolution.py script saves to folder disasgreements_resolved/automatically it also saves files that 
+need further resolution to unresolved_disagreements folder 
+4. view_disagreements.html interface should save to disasgreements_resolved/manually and file number should be changed manually
