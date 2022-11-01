@@ -1,3 +1,0 @@
-1. 'Too Complex'-the chart is not a bar,pie,or line chart. The text is too small to read. resolution of chart is lacking.
-2. 'Cannot create open ended question'-summary has no information that can be derived from the chart. Conext of reported numbers doesn't match chart numbers.
-3. "Good"- otherwise good chart.
