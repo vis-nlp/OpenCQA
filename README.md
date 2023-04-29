@@ -4,13 +4,14 @@
 * Paper Link: [OpenCQA](https://aclanthology.org/2022.emnlp-main.811/)
 
 
-## OpenCQA Dataset
-The OpenCQA images are available in the chart_images folder. The full annotations are available in the etc/data(full_summary_article) folder. They are saved as (train/val/test)_extended.json files for the train/val/test split.The dataset has the following structure:
+## I. OpenCQA Dataset
+### 1. Dataset Structure
 
-
+- Chart images: The OpenCQA images are available in the [chart_image](https://github.com/vis-nlp/OpenCQA/tree/main/chart_images) folder. 
+- Chart metadata: The full annotations are available in the [etc/data(full_summary_article)](https://github.com/vis-nlp/OpenCQA/tree/main/etc/data(random_article_baseline)) folder. They are saved as (train/val/test)_extended.json files for the train/val/test split. Each sample in the json split has the following structure:
 ```
 {	
-   image_no:    [ image_file,
+   image_no:    [image_file,
 				  title,
 				  article,
 				  summary,
@@ -23,30 +24,53 @@ The OpenCQA images are available in the chart_images folder. The full annotation
 	....
 }
 ```
+in which ```title, article, summary, question, abstractive_answer, extractive_answer``` stand for the chart title, the full article, the chart summary, the open-ended question, the question's abstractive answer (modified version of extractive answer), and the question's extractive answer.
+
+- Bounding-boxes and OCRs: All the bounding boxes and OCRs are available in [bboxes](https://github.com/vis-nlp/OpenCQA/tree/main/bboxes). Each chart image has a list of bounding boxes. Each bounding box sample has the OCR ```sentence```, and bbox format: ```[x_center, y_center, width, height]```.
+
+- Note: Chart image ```X.png``` has the bounding box data named ```X.json```.
+
+### 2. Finetuning Details
+- Experimental types:
+  - Extractive experiments: Use ```extractive_answer``` as the ground-truth answer.
+  - Generative experiments: Use ```anstractive_answer``` as the ground-truth answer.
+- Experimental setups:
+  - With Article: 
+    - Input: ```question + title + OCRs + article```.
+    - Output: ```extractive_/abstractive_answer```.
+  - With Summary: 
+    - Input: ```question + title + OCRs + summary```.
+    - Output: ```extractive_/abstractive_answer```.
+  - Without Summary:
+    - Input: ```question + title + OCRs```.
+    - Output: ```extractive_/abstractive_answer```.
 
  
-## Models
+## II. Models
 
-### VL-T5
+### 1. VL-T5
 Please refer to [VL-T5](https://github.com/vis-nlp/OpenCQA/tree/main/baseline_models/VLT5)
 
-### T5 
+### 2. T5 
 Please refer to [T5](https://github.com/vis-nlp/OpenCQA/tree/main/baseline_models/T5)
 
-### BART
+### 3. BART
 Please refer to [BART](https://github.com/vis-nlp/OpenCQA/tree/main/baseline_models/bart)
 
-### BERTQA 
+### 4. BERTQA 
 Please refer to [BERTQA](https://github.com/vis-nlp/OpenCQA/tree/main/baseline_models/bertqa)
 
-### DOC2GRND 
+### 5. DOC2GRND 
 Please refer to [DOC2GRND](https://github.com/vis-nlp/OpenCQA/tree/main/baseline_models/doc2grnd)
 
-### ELECTRA
+### 6. ELECTRA
 Please refer to [ELECTRA](https://github.com/vis-nlp/OpenCQA/tree/main/baseline_models/electra)
 
-### GPT2 
+### 7. GPT2 
 Please refer to [GPT2](https://github.com/vis-nlp/OpenCQA/tree/main/baseline_models/gpt2)
+
+## III. Evaluations
+The metrics used in this work are listed in [evaluation_metrics](https://github.com/vis-nlp/OpenCQA/tree/main/evaluation_metrics). For each metric, we have ```steps.txt``` which presents the steps to setup and run the metric.
 
 # Contact
 If you have any questions about this work, please contact **Enamul Hoque** using the following email address: **enamulh@yorku.ca**.
